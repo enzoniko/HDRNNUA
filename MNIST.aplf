@@ -14,7 +14,7 @@ path←'C:\Users\enzon\OneDrive\Handwriting Digit Recognition Neural Network usi
  ⍝ Initialize a network, it has 784 inputs (28×28),
  ⍝ 2 hidden layers with 16 nodes (arbitrary hidden layers)
  ⍝ and 10 output nodes (1 for each number).
- net←InitNetwork 784 36 36 10
+ net←InitNetwork 784 16 16 10
 
  ⍝ Tie the file we want to train with.
  tn←0 ⎕NTIE⍨path,'\mnist_train.csv'
