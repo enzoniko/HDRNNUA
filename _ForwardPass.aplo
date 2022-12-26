@@ -1,0 +1,8 @@
+ _ForwardPass ← {
+     ⍝ ⍺⍺ is the activation function.
+     ⍝ ⍺ is the network.
+     ⍝ ⍵ is the network input.
+     (ws bs) ← ⍺
+     (_ _ xs) ← (⍺⍺ _F⍣(≢ws)) ws bs (⊂⍵)
+     xs
+ }

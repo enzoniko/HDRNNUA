@@ -1,0 +1,14 @@
+:Namespace LeakyReLU
+    leaky ← 0.01
+    
+    F←{
+        ⍝ ⍵ is the argument of the function.
+        ⍵⌈leaky×⍵
+    }
+
+    DF ← {
+        ⍝ ⍵ is the argument of the function.
+        leaky⌈×⍵
+
+    }
+:EndNamespace

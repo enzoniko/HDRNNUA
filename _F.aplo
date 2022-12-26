@@ -1,0 +1,10 @@
+ _F←{
+     ⍝ ⍺⍺  is the activation function.
+     ⍝ (ws bs xs) ← ⍵ are the components for the calculations.
+     (ws bs xs)←⍵
+     w←⊃ws
+     b←⊃bs
+     inp←⊃⌽xs
+     x←⍺⍺.F b+w+.×inp
+     (1↓ws)(1↓bs)(xs,⊂x)
+ }

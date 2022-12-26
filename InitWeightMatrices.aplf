@@ -1,0 +1,9 @@
+ InitWeightMatrices←{
+     ⍝ ⍵ is the shape of the weight matrices.
+     ⍝ Always divide each number by the square root of
+     ⍝ the total numbers in the vector so they are small.
+     ⍝ Returns a vector of weight matrices.
+     shapes←2,⍨/⍵
+     normalMatrices←MakeNormalArray¨shapes
+     normalMatrices÷(2×/⍵)*0.5
+ }

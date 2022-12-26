@@ -1,0 +1,9 @@
+ InitBiasVectors←{
+     ⍝ ⍵ is the shape of the network.
+     ⍝ Returns a vector of bias vectors.
+     ⍝ Always divide each number by the square root of
+     ⍝ the total numbers so they are small.
+     shape ← 1↓⍵
+     normalArray ← ⍪∘MakeNormalArray¨ shape
+     (shape*0.5) ÷⍨ normalArray
+ }

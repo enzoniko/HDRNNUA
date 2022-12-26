@@ -1,0 +1,55 @@
+ {net}←MNIST _
+ ;path;ReadChunk;SplitChunk;tn
+ ;chunk;nums;inps;outs;targets;targetsMat
+
+path←'C:\Users\enzon\OneDrive\Handwriting Digit Recognition Neural Network using APL\mnistdata'
+
+ ⍝ Helper function that reads a chunk of a csv file.
+ ReadChunk←{(⎕CSV⍠'Records' 1000)⍵'' 2}
+
+ ⍝ Helper function that splits a matrix in two vectors:
+ ⍝ the first column (the actual number) and the 28 by 28 pixel matrix.
+ SplitChunk←{(⊣/⍵)(0 1↓⍵)}
+
+ ⍝ Initialize a network, it has 784 inputs (28×28),
+ ⍝ 2 hidden layers with 16 nodes (arbitrary hidden layers)
+ ⍝ and 10 output nodes (1 for each number).
+ net←InitNetwork 784 36 36 10
+
+ ⍝ Tie the file we want to train with.
+ tn←0 ⎕NTIE⍨path,'\mnist_train.csv'
+
+ ⍝ TRAIN the network
+ :While 0<≢chunk←ReadChunk tn
+     ⍞←'.'
+    ⍝ Split the chunk into targets and pixels(inputs).
+     (targets inps)←SplitChunk chunk
+     targetsMat←targets∘.=⍳10
+     targetsMat{net⊢←⍺(net _Train_ LeakyReLU MSELoss)⍵}⍥⍪⍤1⊢inps
+ :EndWhile
+ ⎕←'Training Complete.'
+
+ ⍝ After we are done with the training we can untie the file.
+ ⎕NUNTIE tn
+
+ ⍝ Tie the file we want to test with.
+ tn←0 ⎕NTIE⍨path,'\mnist_test.csv'
+
+ ⍝ TEST the network
+
+ ⍝ Read chunks while there are elementes on chunks
+ outs←⍬
+ :While 0<≢chunk←ReadChunk tn
+    ⍝ Print stuff to show its working.
+     ⍞←'.'
+    ⍝ Split the chunk into targets and pixels(inputs).
+     (targets inps)←SplitChunk chunk
+     outs,←targets={⊃⍒⊃⌽net(LeakyReLU _ForwardPass)⍪⍵}⍤1⊢inps
+
+
+ :EndWhile
+ ⍝ After we are done with the testing we can untie the file.
+ ⎕NUNTIE tn
+
+ ⍝ Print the outs average.
+ ⎕←(+⌿outs)÷≢outs

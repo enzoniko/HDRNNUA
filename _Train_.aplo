@@ -1,0 +1,19 @@
+ net←target(net _Train_ derivatives)inp
+
+ ;Ws;bs;actFn;lossFn
+ ;xs;dWs;dbs;dx;x;W;b
+
+ (Ws bs)←net
+ (actFn lossFn)←derivatives
+
+ xs←net(actFn _ForwardPass)inp
+ dWs←dbs←⍬
+ dx←target lossFn.DLoss⊃⌽xs
+
+ :For (W b x) :InEach ⌽¨(Ws bs (¯1↓xs))
+     dbs,←⊂dx×actFn.DF b+W+.×x
+     dx←(⍉W)+.×⊃⌽dbs
+     dWs,←⊂(⊃⌽dbs)+.×⍉x
+ :EndFor
+
+ net←(Ws-0.001×⌽dWs)(bs-0.001×⌽dbs)

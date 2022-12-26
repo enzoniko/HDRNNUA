@@ -1,0 +1,16 @@
+:Namespace MSELoss
+      Loss←{
+        ⍝ Mean squared error loss function.
+        ⍝ ⍺ is the target output.
+        ⍝ ⍵ is the output produced.
+          square←2*⍨⍺-⍵
+          +⌿square÷≢⍵
+      }
+
+      DLoss←{
+        ⍝ Derivative of the MSE Loss function.
+        ⍝ ⍵ is the network output.
+        ⍝ ⍺ is the target output.
+          (≢⍵)÷⍨2×⍵-⍺
+      }
+:EndNamespace

@@ -1,0 +1,5 @@
+ InitNetwork ← {
+     ⍝ ⍵ is the shape of the network.
+     ⍝ Returns a pair (W b) of weight matrices and bias vectors.
+     (InitWeightMatrices ⍵) (InitBiasVectors ⍵)
+ }

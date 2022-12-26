@@ -1,0 +1,7 @@
+ _if_ ← {
+     ⍝ ⍺⍺ is the left operand, a function we want to apply to ⍵
+     ⍝ if ⍵⍵, which is a boolean function and the right operand, applied to ⍵ evaluates to 1.
+     ⍝ (⍺⍺ _if_ ⍵⍵) ⍵.
+     apply ← ⍵⍵ ⍵
+     (⍺⍺⍣apply)⍵
+ }
