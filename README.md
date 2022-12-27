@@ -18,6 +18,7 @@
 #### - Copy the path to the downloaded repo folder;
 #### - Link the apl session with the folder by doing `]create path-to-link`;
 #### - Replace every occurance of this path in the MNIST apl file;
+#### - In your APL IDE write `⎕IO ← 0`;
 #### - That's it, to train and test the Neural Network write `MNIST ⍬`;
 #### - After a couple of seconds spent training the NN, it should test it and return the accuracy! Feel free to tweak the hidden layers in the MNIST function or change the Activation and/or Loss functions (Using LeakyReLU and MSELoss respectively).
 
