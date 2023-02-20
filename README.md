@@ -16,7 +16,7 @@
 #### - Unzip the training and testing MNIST samples in this repo or create your own 28x28 handritten digits samples (Copy the MNIST format: CSV file, One digit per row, first number of every row is the target digit (0 to 9), every other 768 (28x28) elements are the pixels (0 to 255));
 #### - You need to have apl downloaded and installed in your machine;
 #### - Copy the path to the downloaded repo folder;
-#### - Link the apl session with the folder by doing `]create path-to-link`;
+#### - Link the apl session with the folder by doing `]create # path-to-link`;
 #### - Replace every occurance of this path in the MNIST apl file;
 #### - In your APL IDE write `⎕IO ← 0`;
 #### - That's it, to train and test the Neural Network write `MNIST ⍬`;
